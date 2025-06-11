@@ -25,3 +25,4 @@ node_modules/
 dist/
 .idea
 .package-lock.json
+third_party_licenses/

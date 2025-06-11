@@ -45,6 +45,10 @@ var (
 
 	//go:embed build/sysroot/etc/cassetteos/user-service.conf.sample
 	_confSample string
+
+	Version string
+	Commit  string
+	Date    string
 )
 
 func init() {
@@ -58,6 +62,9 @@ func init() {
 
 	if *versionFlag {
 		fmt.Printf("v%s\n", common.Version)
+		fmt.Printf("Version: %s\n", Version)
+		fmt.Printf("Commit:  %s\n", Commit)
+		fmt.Printf("Date:    %s\n", Date)
 		os.Exit(0)
 	}
 
