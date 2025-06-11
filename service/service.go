@@ -1,9 +1,9 @@
 package service
 
 import (
-	"github.com/IceWhaleTech/CasaOS-Common/external"
-	"github.com/IceWhaleTech/CasaOS-UserService/codegen/message_bus"
-	"github.com/IceWhaleTech/CasaOS-UserService/pkg/config"
+	"github.com/BeesNestInc/CassetteOS-Common/external"
+	"github.com/BeesNestInc/CassetteOS-UserService/codegen/message_bus"
+	"github.com/BeesNestInc/CassetteOS-UserService/pkg/config"
 	"gorm.io/gorm"
 )
 
