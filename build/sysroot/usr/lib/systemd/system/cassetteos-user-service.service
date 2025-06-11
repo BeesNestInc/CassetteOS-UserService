@@ -1,0 +1,13 @@
+[Unit]
+After=cassetteos-message-bus.service
+Description=CasstteOS User Service
+
+[Service]
+ExecStartPre=/usr/bin/cassetteos-user-service -v
+ExecStart=/usr/bin/cassetteos-user-service -c /etc/cassetteos/user-service.conf
+PIDFile=/var/run/cassetteos/user-service.pid
+Restart=always
+Type=notify
+
+[Install]
+WantedBy=multi-user.target

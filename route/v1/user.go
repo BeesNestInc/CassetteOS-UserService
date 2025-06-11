@@ -19,24 +19,24 @@ import (
 	"strings"
 	"time"
 
-	"github.com/IceWhaleTech/CasaOS-Common/external"
-	"github.com/IceWhaleTech/CasaOS-Common/utils/common_err"
-	"github.com/IceWhaleTech/CasaOS-Common/utils/jwt"
-	"github.com/IceWhaleTech/CasaOS-Common/utils/logger"
-	"github.com/IceWhaleTech/CasaOS-UserService/common"
-	"github.com/IceWhaleTech/CasaOS-UserService/model"
-	"github.com/IceWhaleTech/CasaOS-UserService/model/system_model"
-	"github.com/IceWhaleTech/CasaOS-UserService/pkg/config"
-	"github.com/IceWhaleTech/CasaOS-UserService/pkg/utils/encryption"
-	"github.com/IceWhaleTech/CasaOS-UserService/pkg/utils/file"
-	model2 "github.com/IceWhaleTech/CasaOS-UserService/service/model"
+	"github.com/BeesNestInc/CassetteOS-Common/external"
+	"github.com/BeesNestInc/CassetteOS-Common/utils/common_err"
+	"github.com/BeesNestInc/CassetteOS-Common/utils/jwt"
+	"github.com/BeesNestInc/CassetteOS-Common/utils/logger"
+	"github.com/BeesNestInc/CassetteOS-UserService/common"
+	"github.com/BeesNestInc/CassetteOS-UserService/model"
+	"github.com/BeesNestInc/CassetteOS-UserService/model/system_model"
+	"github.com/BeesNestInc/CassetteOS-UserService/pkg/config"
+	"github.com/BeesNestInc/CassetteOS-UserService/pkg/utils/encryption"
+	"github.com/BeesNestInc/CassetteOS-UserService/pkg/utils/file"
+	model2 "github.com/BeesNestInc/CassetteOS-UserService/service/model"
 	"github.com/labstack/echo/v4"
 	uuid "github.com/satori/go.uuid"
 	"github.com/tidwall/gjson"
 	"go.uber.org/zap"
 	"golang.org/x/time/rate"
 
-	"github.com/IceWhaleTech/CasaOS-UserService/service"
+	"github.com/BeesNestInc/CassetteOS-UserService/service"
 )
 
 // @Summary register user
@@ -231,14 +231,14 @@ func GetUserAvatar(ctx echo.Context) error {
 		return ctx.File(user.Avatar)
 
 	}
-	user.Avatar = "/usr/share/casaos/www/avatar.svg"
+	user.Avatar = "/usr/share/cassetteos/www/avatar.svg"
 	if file.Exists(user.Avatar) {
 		ctx.Response().Header().Set("Content-Disposition", "attachment; filename*=utf-8''"+url2.PathEscape(path.Base(user.Avatar)))
 		ctx.Response().Header().Set("Cache-Control", "no-cache, no-store, max-age=0, must-revalidate, value")
 		return ctx.File(user.Avatar)
 
 	}
-	user.Avatar = "/var/lib/casaos/www/avatar.svg"
+	user.Avatar = "/var/lib/cassetteos/www/avatar.svg"
 	ctx.Response().Header().Set("Content-Disposition", "attachment; filename*=utf-8''"+url2.PathEscape(path.Base(user.Avatar)))
 	ctx.Response().Header().Set("Cache-Control", "no-cache, no-store, max-age=0, must-revalidate, value")
 	return ctx.File(user.Avatar)
@@ -656,7 +656,7 @@ func GetUserImage(ctx echo.Context) error {
 		return ctx.JSON(http.StatusNotFound, model.Result{Success: common_err.INSUFFICIENT_PERMISSIONS, Message: common_err.GetMsg(common_err.INSUFFICIENT_PERMISSIONS)})
 	}
 
-	matched, err := regexp.MatchString(`^/var/lib/casaos/\d`, absFilePath)
+	matched, err := regexp.MatchString(`^/var/lib/cassetteos/\d`, absFilePath)
 	if err != nil {
 		return ctx.JSON(http.StatusNotFound, model.Result{Success: common_err.INSUFFICIENT_PERMISSIONS, Message: common_err.GetMsg(common_err.INSUFFICIENT_PERMISSIONS)})
 	}

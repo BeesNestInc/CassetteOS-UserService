@@ -6,19 +6,19 @@ import (
 	"fmt"
 	"os"
 
-	interfaces "github.com/IceWhaleTech/CasaOS-Common"
-	"github.com/IceWhaleTech/CasaOS-Common/utils/systemctl"
-	"github.com/IceWhaleTech/CasaOS-UserService/common"
+	interfaces "github.com/BeesNestInc/CassetteOS-Common"
+	"github.com/BeesNestInc/CassetteOS-Common/utils/systemctl"
+	"github.com/BeesNestInc/CassetteOS-UserService/common"
 )
 
 const (
-	userServiceConfigDirPath  = "/etc/casaos"
-	userServiceConfigFilePath = "/etc/casaos/user-service.conf"
-	userServiceName           = "casaos-user-service.service"
+	userServiceConfigDirPath  = "/etc/cassetteos"
+	userServiceConfigFilePath = "/etc/cassetteos/user-service.conf"
+	userServiceName           = "cassetteos-user-service.service"
 	userServiceNameShort      = "user-service"
 )
 
-//go:embedded ../../build/sysroot/etc/casaos/user-service.conf.sample
+//go:embedded ../../build/sysroot/etc/cassetteos/user-service.conf.sample
 //var _userServiceConfigFileSample string
 
 var (

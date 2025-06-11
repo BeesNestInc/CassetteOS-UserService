@@ -1,5 +1,5 @@
 //go:generate bash -c "mkdir -p codegen/user_service && go run github.com/deepmap/oapi-codegen/cmd/oapi-codegen@v1.12.4 -generate types,server,spec -package codegen api/user-service/openapi.yaml > codegen/user_service/user_service_api.go"
-//go:generate bash -c "mkdir -p codegen/message_bus && go run github.com/deepmap/oapi-codegen/cmd/oapi-codegen@v1.12.4 -package message_bus https://raw.githubusercontent.com/IceWhaleTech/CasaOS-MessageBus/main/api/message_bus/openapi.yaml > codegen/message_bus/api.go"
+//go:generate bash -c "mkdir -p codegen/message_bus && go run github.com/deepmap/oapi-codegen/cmd/oapi-codegen@v1.12.4 -package message_bus https://raw.githubusercontent.com/BeesNestInc/CassetteOS-MessageBus/main/api/message_bus/openapi.yaml > codegen/message_bus/api.go"
 package main
 
 import (
@@ -14,19 +14,19 @@ import (
 	"strings"
 	"time"
 
-	"github.com/IceWhaleTech/CasaOS-Common/external"
-	"github.com/IceWhaleTech/CasaOS-Common/model"
-	util_http "github.com/IceWhaleTech/CasaOS-Common/utils/http"
-	"github.com/IceWhaleTech/CasaOS-Common/utils/jwt"
-	"github.com/IceWhaleTech/CasaOS-Common/utils/logger"
-	"github.com/IceWhaleTech/CasaOS-UserService/codegen/message_bus"
-	"github.com/IceWhaleTech/CasaOS-UserService/common"
-	"github.com/IceWhaleTech/CasaOS-UserService/pkg/config"
-	"github.com/IceWhaleTech/CasaOS-UserService/pkg/sqlite"
-	"github.com/IceWhaleTech/CasaOS-UserService/pkg/utils/encryption"
-	"github.com/IceWhaleTech/CasaOS-UserService/pkg/utils/random"
-	"github.com/IceWhaleTech/CasaOS-UserService/route"
-	"github.com/IceWhaleTech/CasaOS-UserService/service"
+	"github.com/BeesNestInc/CassetteOS-Common/external"
+	"github.com/BeesNestInc/CassetteOS-Common/model"
+	util_http "github.com/BeesNestInc/CassetteOS-Common/utils/http"
+	"github.com/BeesNestInc/CassetteOS-Common/utils/jwt"
+	"github.com/BeesNestInc/CassetteOS-Common/utils/logger"
+	"github.com/BeesNestInc/CassetteOS-UserService/codegen/message_bus"
+	"github.com/BeesNestInc/CassetteOS-UserService/common"
+	"github.com/BeesNestInc/CassetteOS-UserService/pkg/config"
+	"github.com/BeesNestInc/CassetteOS-UserService/pkg/sqlite"
+	"github.com/BeesNestInc/CassetteOS-UserService/pkg/utils/encryption"
+	"github.com/BeesNestInc/CassetteOS-UserService/pkg/utils/random"
+	"github.com/BeesNestInc/CassetteOS-UserService/route"
+	"github.com/BeesNestInc/CassetteOS-UserService/service"
 	"github.com/coreos/go-systemd/daemon"
 	"go.uber.org/zap"
 )
@@ -43,8 +43,12 @@ var (
 	//go:embed api/user-service/openapi.yaml
 	_docYAML string
 
-	//go:embed build/sysroot/etc/casaos/user-service.conf.sample
+	//go:embed build/sysroot/etc/cassetteos/user-service.conf.sample
 	_confSample string
+
+	Version string
+	Commit  string
+	Date    string
 )
 
 func init() {
@@ -58,6 +62,9 @@ func init() {
 
 	if *versionFlag {
 		fmt.Printf("v%s\n", common.Version)
+		fmt.Printf("Version: %s\n", Version)
+		fmt.Printf("Commit:  %s\n", Commit)
+		fmt.Printf("Date:    %s\n", Date)
 		os.Exit(0)
 	}
 
