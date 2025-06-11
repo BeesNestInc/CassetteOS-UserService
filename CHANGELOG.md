@@ -1,4 +1,4 @@
-## unreleased
+## v0.4.8-cs1.0.0
 ### Changes
 
 - Based on CasaOS-UserService v0.4.8 (`452aeac7f1a57fa936d11f9460e286bea3c34db7`)
