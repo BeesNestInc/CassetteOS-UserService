@@ -231,14 +231,14 @@ func GetUserAvatar(ctx echo.Context) error {
 		return ctx.File(user.Avatar)
 
 	}
-	user.Avatar = "/usr/share/casaos/www/avatar.svg"
+	user.Avatar = "/usr/share/cassetteos/www/avatar.svg"
 	if file.Exists(user.Avatar) {
 		ctx.Response().Header().Set("Content-Disposition", "attachment; filename*=utf-8''"+url2.PathEscape(path.Base(user.Avatar)))
 		ctx.Response().Header().Set("Cache-Control", "no-cache, no-store, max-age=0, must-revalidate, value")
 		return ctx.File(user.Avatar)
 
 	}
-	user.Avatar = "/var/lib/casaos/www/avatar.svg"
+	user.Avatar = "/var/lib/cassetteos/www/avatar.svg"
 	ctx.Response().Header().Set("Content-Disposition", "attachment; filename*=utf-8''"+url2.PathEscape(path.Base(user.Avatar)))
 	ctx.Response().Header().Set("Cache-Control", "no-cache, no-store, max-age=0, must-revalidate, value")
 	return ctx.File(user.Avatar)
@@ -656,7 +656,7 @@ func GetUserImage(ctx echo.Context) error {
 		return ctx.JSON(http.StatusNotFound, model.Result{Success: common_err.INSUFFICIENT_PERMISSIONS, Message: common_err.GetMsg(common_err.INSUFFICIENT_PERMISSIONS)})
 	}
 
-	matched, err := regexp.MatchString(`^/var/lib/casaos/\d`, absFilePath)
+	matched, err := regexp.MatchString(`^/var/lib/cassetteos/\d`, absFilePath)
 	if err != nil {
 		return ctx.JSON(http.StatusNotFound, model.Result{Success: common_err.INSUFFICIENT_PERMISSIONS, Message: common_err.GetMsg(common_err.INSUFFICIENT_PERMISSIONS)})
 	}
