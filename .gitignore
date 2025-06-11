@@ -26,3 +26,5 @@ dist/
 .idea
 .package-lock.json
 third_party_licenses/
+openapitools.json
+yarn.lock
