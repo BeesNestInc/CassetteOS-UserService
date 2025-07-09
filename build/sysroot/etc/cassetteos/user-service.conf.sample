@@ -1,0 +1,9 @@
+[common]
+RuntimePath=/var/run/cassetteos
+
+[app]
+LogPath = /var/log/cassetteos
+LogSaveName = user-service
+LogFileExt = log
+DBPath     = /var/lib/cassetteos/db
+UserDataPath = /var/lib/cassetteos
